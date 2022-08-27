@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:03:36 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/08/15 14:34:04 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:20:40 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ char	*ft_strjoingnl(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	dst = (char *)malloc(sizeof(char) * (ft_strlengnl(s1) + ft_strlengnl(s2)) + 1);
+	dst = (char *)malloc(sizeof(char)
+			* (ft_strlengnl(s1) + ft_strlengnl(s2)) + 1);
 	if (!dst)
 		return (0);
 	while (s1 && s1[i] != '\0')
