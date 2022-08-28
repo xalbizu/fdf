@@ -55,8 +55,40 @@ int	get_width(char *file_name)
 	return (width);
 }
 
+void	fill_matrix(int *z_line, char *line)
+{
+	char	**nums;
+
+	nums = ft_split(line, ' ');
+	i = 0;
+	while (nums[i])
+	{
+		z_line[i] = ft_atoi(nums[i]);
+		free(nums[i]);
+		i++;
+	}
+	free(nums);
+}
+
 void	read_file(t_fdf *data, char *file_name)
 {
+	int	fd;
+	int	*line;
+	int	i;
+
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
+	data->matrix = (int **)malloc(sizeof(int *) * (data->width));
+	fd = open(file_name, O_RDONLY, 0);
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		fill_matrix(data->matrix[i], line);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	free(line);
+	data->matrix[i] = NULL;
 }

@@ -23,7 +23,7 @@ SRC = $(FILES:.c=.o)
 
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
 MFLAGS = -I $(PATH_MLX) -L $(PATH_MLX) -L . -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
