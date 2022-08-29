@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:54:46 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/08/27 15:21:27 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:03:01 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,40 +55,58 @@ int	get_width(char *file_name)
 	return (width);
 }
 
-void	fill_matrix(int *z_line, char *line)
+int	*ft_get_nums(char *line, int width)
 {
-	char	**nums;
+	int		*result;
+	int		i;
+	int		j;
 
-	nums = ft_split(line, ' ');
+	j = 0;
 	i = 0;
-	while (nums[i])
+	result = (int *)malloc(width * sizeof(int));
+	while (j < width)
 	{
-		z_line[i] = ft_atoi(nums[i]);
-		free(nums[i]);
+		if (line[i] <= '9' && line[i] >= '0')
+		{
+			result[j] = line[i] - '0';
+			while (line[i + 1] <= '9' && line[i + 1] >= '0')
+			{
+				result[j] = result[j] * 10;
+				result[j] = result[j] + line[i + 1] - '0';
+				i++;
+			}
+			j++;
+		}
 		i++;
 	}
-	free(nums);
+	return (result);
+}
+
+int	*fill_matrix(char *line, int width)
+{
+	int	*nums;
+
+	nums = ft_get_nums(line, width);
+	return (nums);
 }
 
 void	read_file(t_fdf *data, char *file_name)
 {
-	int	fd;
-	int	*line;
-	int	i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
 	data->matrix = (int **)malloc(sizeof(int *) * (data->width));
 	fd = open(file_name, O_RDONLY, 0);
 	i = 0;
-	line = get_next_line(fd);
-	while (line)
+	while (i == 0 || i < data->height)
 	{
-		fill_matrix(data->matrix[i], line);
-		free(line);
 		line = get_next_line(fd);
+		data->matrix[i] = fill_matrix(line, data->width);
+		free(line);
 		i++;
 	}
-	free(line);
-	data->matrix[i] = NULL;
+	close(fd);
 }

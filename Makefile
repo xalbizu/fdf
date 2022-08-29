@@ -6,7 +6,7 @@
 #    By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:36:38 by xalbizu-          #+#    #+#              #
-#    Updated: 2022/08/27 12:11:05 by xalbizu-         ###   ########.fr        #
+#    Updated: 2022/08/29 11:45:59 by xalbizu-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC = $(FILES:.c=.o)
 
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
 MFLAGS = -I $(PATH_MLX) -L $(PATH_MLX) -L . -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 09:58:12 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/07/27 15:04:44 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:47:13 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(const char *str)
 			isnegative = 1;
 		count++;
 	}
-	while (str[count] >= '0' && str[count] <= '9')
+	while (str[count] >= '0' && str[count] <= '9' && str[count])
 	{
 		result *= 10;
 		result += str[count] - '0';
