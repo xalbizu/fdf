@@ -16,14 +16,14 @@ PATH_GNL = ./gnl/
 LIBFT = $(PATH_LIBFT)libft.a
 MLX = $(PATH_MLX)libmlx.a
 
-FILES = fdf.c read_file.c \
+FILES = fdf.c read_file.c draw.c \
 		$(PATH_GNL)get_next_line.c  $(PATH_GNL)get_next_line_utils.c
 
 SRC = $(FILES:.c=.o)
 
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
 MFLAGS = -I $(PATH_MLX) -L $(PATH_MLX) -L . -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
