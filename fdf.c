@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:36:19 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/02 16:48:51 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:17:27 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@
 		}
 } */
 
-int	deal_key(int key)
+int	deal_key(int key, void *param)
 {
-	write(1, &key, 11);
+	t_fdf	*data;
+
+	data = (t_fdf *)param;
+	if (key == 53)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	return (0);
 }
 
@@ -42,9 +46,8 @@ int	main(int argc, char *argv[])
 		read_file(data, argv[1]);
 		data->mlx_ptr = mlx_init();
 		data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
-		data->zoom = 20;
 		draw(data, dr);
-		mlx_key_hook(data->win_ptr, deal_key, NULL);
+		mlx_key_hook(data->win_ptr, deal_key, data);
 		mlx_loop(data->mlx_ptr);
 	}
 	else

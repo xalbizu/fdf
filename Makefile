@@ -6,7 +6,7 @@
 #    By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:36:38 by xalbizu-          #+#    #+#              #
-#    Updated: 2022/08/29 11:45:59 by xalbizu-         ###   ########.fr        #
+#    Updated: 2022/09/06 15:54:26 by xalbizu-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,14 @@ PATH_GNL = ./gnl/
 LIBFT = $(PATH_LIBFT)libft.a
 MLX = $(PATH_MLX)libmlx.a
 
-FILES = fdf.c read_file.c draw.c \
+FILES = fdf.c read_file.c draw.c isometric.c\
 		$(PATH_GNL)get_next_line.c  $(PATH_GNL)get_next_line_utils.c
 
 SRC = $(FILES:.c=.o)
 
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
 MFLAGS = -I $(PATH_MLX) -L $(PATH_MLX) -L . -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
@@ -44,8 +44,5 @@ fclean: clean
 	rm -f $(NAME)
 	make clean -C $(PATH_MLX)
 	make fclean -C $(PATH_LIBFT)
-
-re: fclean all
-
 
 re: fclean all

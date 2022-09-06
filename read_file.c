@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:54:46 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/08/29 15:03:01 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:33:00 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	*ft_get_nums(char *line, int width)
 		if (line[i] <= '9' && line[i] >= '0')
 		{
 			result[j] = line[i] - '0';
+			if (i != 0 && line[i - 1] == '-')
+				result[j] *= -1;
 			while (line[i + 1] <= '9' && line[i + 1] >= '0')
 			{
 				result[j] = result[j] * 10;
