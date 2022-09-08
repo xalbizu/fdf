@@ -6,7 +6,7 @@
 #    By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:36:38 by xalbizu-          #+#    #+#              #
-#    Updated: 2022/09/06 15:54:26 by xalbizu-         ###   ########.fr        #
+#    Updated: 2022/09/08 16:20:10 by xalbizu-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ PATH_GNL = ./gnl/
 LIBFT = $(PATH_LIBFT)libft.a
 MLX = $(PATH_MLX)libmlx.a
 
-FILES = fdf.c read_file.c draw.c isometric.c\
+FILES = fdf.c read_file.c draw.c isometric.c set_colours.c \
 		$(PATH_GNL)get_next_line.c  $(PATH_GNL)get_next_line_utils.c
 
 SRC = $(FILES:.c=.o)

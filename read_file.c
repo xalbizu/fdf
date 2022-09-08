@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:54:46 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/06 18:33:00 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:46:50 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void	read_file(t_fdf *data, char *file_name)
 		i++;
 	}
 	close(fd);
+	set_colours(data);
 }
