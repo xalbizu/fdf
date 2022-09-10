@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:45:01 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/10 17:40:57 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:04:47 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int		exit_program(t_fdf *data);
 void	set_colours(t_fdf *data);
 float	mod(float num);
 void	change_colour(t_fdf *data, int col);
+void	pixel_colour(t_fdf *data, float *z);
 
 #endif

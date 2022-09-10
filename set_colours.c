@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:10:50 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/10 17:41:13 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:04:42 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,15 @@ void	change_colour(t_fdf *data, int col)
 	data->sc = col;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data, &data->dr);
+}
+
+void	pixel_colour(t_fdf *data, float *z)
+{
+	if ((int)(*z / data->color_grad) > 12)
+			data->color = data->colours[data->sc][12];
+	else if ((int)(*z / data->color_grad) < 0)
+		data->color = data->colours[data->sc][0];
+	else
+		data->color = data->colours[data->sc][(int)(*z / data->color_grad)];
+	*z += data->z_step;
 }

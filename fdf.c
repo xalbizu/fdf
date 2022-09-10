@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:36:19 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/10 17:46:16 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:29:04 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	zoom(t_fdf *data, int z)
 
 int	translate(int x, int y, t_fdf *data)
 {
-	data->x_offset += x;
-	data->y_offset += y;
+	data->x_offset += x * (data->zoom * data->height) / 100;
+	data->y_offset += y * (data->zoom * data->height) / 100;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data, &data->dr);
 	return (0);
