@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:59:47 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/08 20:08:12 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:37:38 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	bresenham(t_draw *dr, t_fdf *data)
 
 	z = data->matrix[(int)dr->y][(int)dr->x];
 	z1 = data->matrix[(int)dr->y1][(int)dr->x1];
+	z *= 2;
+	z1 *= 2;
 	fit_to_screen(data, dr);
-	z *= 10;
-	z1 *= 10;
 	isometric(&dr->x, &dr->y, z);
 	isometric(&dr->x1, &dr->y1, z1);
 	x_step = dr->x1 - dr->x;
@@ -46,11 +46,20 @@ void	bresenham(t_draw *dr, t_fdf *data)
 	max = num_max(mod(x_step), mod(y_step));
 	x_step /= max;
 	y_step /= max;
+	data->z_step = (z1 - z) / max;
 	while ((int)(dr->x - dr->x1) || (int)(dr->y - dr->y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, dr->x, dr->y, data->color);
+		if ((int)(z / data->color_grad) > 12)
+			data->color = data->colours[data->sc][12];
+		else if ((int)(z / data->color_grad) < 0)
+			data->color = data->colours[data->sc][0];
+		else
+			data->color = data->colours[data->sc][(int)(z / data->color_grad)];
+		if ((dr->x > 0 && dr->x < 1000) && (dr->y > 0 && dr->y < 1000))
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, dr->x, dr->y, data->color);
 		dr->x += x_step;
 		dr->y += y_step;
+		z += data->z_step;
 	}
 }
 

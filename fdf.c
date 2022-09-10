@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:36:19 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/08 17:57:14 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:46:16 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	zoom(t_fdf *data, int z)
 {
-	data->zoom += z;
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	draw(data, &data->dr);
+	if ((data->zoom < 3 && z > 0) || data->zoom > 2)
+	{
+		data->zoom += z;
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
+		draw(data, &data->dr);
+	}
 	return (0);
 }
 
@@ -45,6 +48,10 @@ int	deal_key(int key, t_fdf *data)
 		translate(0, 20, data);
 	else if (key == 126)
 		translate(0, -20, data);
+	else if (key == 18)
+		change_colour(data, 0);
+	else if (key == 19)
+		change_colour(data, 1);
 	return (0);
 }
 
@@ -61,6 +68,7 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
+		data.sc = 0;
 		data.min_z = __INT_MAX__;
 		data.max_z = -__INT_MAX__;
 		data.color_grad = 0;
