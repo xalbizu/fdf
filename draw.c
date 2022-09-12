@@ -6,25 +6,11 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:59:47 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/10 19:11:09 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:48:03 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_lib.h"
-
-int	num_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-float	mod(float num)
-{
-	if (num < 0)
-		return (-num);
-	return (num);
-}
 
 void	bresenham(t_draw *dr, t_fdf *data)
 {
@@ -36,9 +22,7 @@ void	bresenham(t_draw *dr, t_fdf *data)
 
 	z = data->matrix[(int)dr->y][(int)dr->x] * 2;
 	z1 = data->matrix[(int)dr->y1][(int)dr->x1] * 2;
-	fit_to_screen(data, dr);
-	isometric(&dr->x, &dr->y, z);
-	isometric(&dr->x1, &dr->y1, z1);
+	fit_to_screen(data, dr, z, z1);
 	x_step = dr->x1 - dr->x;
 	y_step = dr->y1 - dr->y;
 	max = num_max(mod(x_step), mod(y_step));
@@ -56,6 +40,26 @@ void	bresenham(t_draw *dr, t_fdf *data)
 	}
 }
 
+void	draw_2(t_fdf *data, t_draw *dr, int x, int y)
+{
+	if (x < data->width - 1)
+	{
+		dr->x = x;
+		dr->y = y;
+		dr->x1 = x + 1;
+		dr->y1 = y;
+		bresenham(dr, data);
+	}
+	if (y < data->height - 1)
+	{
+		dr->x = x;
+		dr->y = y;
+		dr->x1 = x;
+		dr->y1 = y + 1;
+		bresenham(dr, data);
+	}
+}
+
 void	draw(t_fdf *data, t_draw *dr)
 {
 	int	x;
@@ -67,27 +71,12 @@ void	draw(t_fdf *data, t_draw *dr)
 		x = -1;
 		while (++x < data->width)
 		{
-			if (x < data->width - 1)
-			{
-				dr->x = x;
-				dr->y = y;
-				dr->x1 = x + 1;
-				dr->y1 = y;
-				bresenham(dr, data);
-			}
-			if (y < data->height - 1)
-			{
-				dr->x = x;
-				dr->y = y;
-				dr->x1 = x;
-				dr->y1 = y + 1;
-				bresenham(dr, data);
-			}
+			draw_2(data, dr, x, y);
 		}
 	}
 }
 
-void	fit_to_screen(t_fdf *data, t_draw *dr)
+void	fit_to_screen(t_fdf *data, t_draw *dr, float z, float z1)
 {
 	dr->x *= data->zoom;
 	dr->y *= data->zoom;
@@ -97,4 +86,6 @@ void	fit_to_screen(t_fdf *data, t_draw *dr)
 	dr->y1 += data ->y_offset;
 	dr->x += (data->height / data->zoom) + 500 + data->x_offset;
 	dr->x1 += (data->height / data->zoom) + 500 + data->x_offset;
+	isometric(&dr->x, &dr->y, z);
+	isometric(&dr->x1, &dr->y1, z1);
 }

@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:36:19 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/10 19:29:04 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:08:37 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		data.sc = 0;
-		data.min_z = __INT_MAX__;
-		data.max_z = -__INT_MAX__;
+		data.min_z = 2147483647;
+		data.max_z = -2147483647;
 		data.color_grad = 0;
 		data.color = 0xf25353;
 		data.x_offset = 0;

@@ -6,7 +6,7 @@
 /*   By: xalbizu- <xalbizu-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:45:01 by xalbizu-          #+#    #+#             */
-/*   Updated: 2022/09/10 19:04:47 by xalbizu-         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:20:27 by xalbizu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ int		get_width(char *file_name);
 void	bresenham(t_draw *dr, t_fdf *data);
 void	draw(t_fdf *data, t_draw *dr);
 void	isometric(float *x, float *y, int z);
-void	fit_to_screen(t_fdf *data, t_draw *dr);
+void	fit_to_screen(t_fdf *data, t_draw *dr, float z, float z1);
 int		exit_program(t_fdf *data);
 void	set_colours(t_fdf *data);
 float	mod(float num);
 void	change_colour(t_fdf *data, int col);
 void	pixel_colour(t_fdf *data, float *z);
+int		num_max(int a, int b);
+float	mod(float num);
 
 #endif
